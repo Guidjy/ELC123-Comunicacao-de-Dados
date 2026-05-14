@@ -1,0 +1,18 @@
+<html>
+
+    <head>
+        <title>Comunicação de Dados</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+
+    <body class="bg-gray-800 text-white">
+        <h1 class="text-2xl">Comunicação de Dados</h1>
+        
+        <div>
+            <img id="resultado-grafico" alt="Gráfico de codificação de linha">
+        </div>
+
+        <script type="module" src="{{ url_for('static', path='/index.js') }}"></script>
+    </body>
+
+</html>
