@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 
-def plota_grafico(digital_signal, file_path):
+def plota_grafico(dado_digital, caminho):
     """
-    Feito pelo gemini -> mudar depois se precisar
+    Feito pelo gemini -> mudar depois para plotar vários sinais
     """
     # 1. Create the step plot
     # where='post' means the signal stays at its current value until the NEXT point
-    plt.step(range(len(digital_signal)), digital_signal, where='post', color='blue', linewidth=2)
+    plt.step(range(len(dado_digital)), dado_digital, where='post', color='blue', linewidth=2)
 
     # 2. Format the Y-axis to look like a logic analyzer
     plt.ylim(-0.2, 1.2)  # Add padding above 1 and below 0 so the line doesn't touch the edges
@@ -21,5 +21,5 @@ def plota_grafico(digital_signal, file_path):
     plt.title('Digital Signal Plot')
 
     # Save the plot
-    plt.savefig(file_path)
+    plt.savefig(caminho)
     plt.close()
