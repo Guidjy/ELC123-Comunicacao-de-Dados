@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 import matplotlib.pyplot as plt
 from pathlib import Path
 from codificacao import *
+from plot import *
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -40,14 +41,8 @@ def plot(dado_digital: list[int] = Body(), metodos_de_codificacao: list[str] = B
             # TODO: implementar resto dos métodos
             case _:
                 raise HTTPException(status_code=404, detail=f'método {metodo} não recdonhecido')
-    
-    # teste
-    print(codigos_de_linha)
 
     # plota e salva o gráfico (TODO: usar os métodos de codificação e não um gráfico fake)
-    plt.figure()
-    plt.plot([1, 2, 3], [4, 5, 6])
-    plt.savefig(caminho)
-    plt.close()
+    plota_grafico(codigos_de_linha["MANCHESTER"], caminho)
     
     return FileResponse(caminho)
