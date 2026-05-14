@@ -18,10 +18,10 @@ python3 -m venv .venv
 pip install requirements.txt
 ```
 - Inicialize o servidor web: 
-```
-uvicorn main:app
-```
-    - (Para ver mudanças no código automaticamente): 
+    ```
+    uvicorn main:app
+    ```
+    - (Para ver mudanças no código automaticamente):
     ```
     uvicorn main:app --reload
     ```
