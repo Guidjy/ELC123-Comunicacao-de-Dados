@@ -1,6 +1,7 @@
 ## Como rodar:
 
-- Crie um ambiente virtual: ```python3 -m venv .venv```
+- Crie um ambiente virtual: 
+```python3 -m venv .venv```
 - Ative o ambiente virtual:
     - Linux: ```source .venv/bin/activate```
     - Windows(cmd): ```.\.venv\Scripts\activate.bat```
