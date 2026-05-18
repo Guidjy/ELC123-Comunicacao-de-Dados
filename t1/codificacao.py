@@ -122,4 +122,81 @@ def manchester_diferencial(dado_digital):
         
     return elementos_de_sinal
 
-# TODO: implementar 2B1Q, Código Miller (Delay Modulation), e MLT-3
+def cod_2B1Q(dado_digital):
+    """Transforma 2 bits binários em 1 símbolo quaternário
+    Args:
+        dado_digital (int[]): lista que representa o dado digital
+    Returns:
+        int[]: lista que representa o dado digital codificado
+    """
+    #Caso tenha um número ímpar de bits preenchemos com 0 no final
+    if len(dado_digital) % 2 != 0:
+        dado_digital.append(0)
+
+    tabela_2b1q = {
+        (0, 0): -3,
+        (0, 1): -1,
+        (1, 0): +3,
+        (1, 1): +1
+    }
+    
+    elemento_de_sinal = []
+
+    for i in range(0, len(dado_digital)/2):
+        par = (dado_digital[i], dado_digital[i+1])
+        nivel = tabela_2b1q[par]
+        elemento_de_sinal.append(nivel)
+    
+    return elemento_de_sinal
+
+def delay_modulation(dado_digital):        
+    """Caso o bit for 0, trocamos de nível na borda do bit, 
+    caso o bit for 1, trocamos de nível no meio do tempo do bit
+    Args:
+        dado_digital (int[]): lista que representa o dado digital
+    Returns:
+        int[]: lista que representa o dado digital codificado
+    """
+    elemento_de_sinal = [] # Guardará dois valores por bit: [primeira_metade, segunda_metade]
+    
+    estado_atual = -1  # supõe que a linha estava em tensão baixa antes de começar
+    
+    for i, bit in enumerate(dado_digital):
+        if bit == 1:
+            primeira_metade = estado_atual
+            segunda_metade = -estado_atual
+            
+            elemento_de_sinal.extend([primeira_metade, segunda_metade])
+            estado_atual = segunda_metade
+            
+        else:
+            if i > 0 and dado_digital[i-1] == 0:
+                estado_atual = -estado_atual
+                
+            primeira_metade = estado_atual
+            segunda_metade = estado_atual
+            
+            elemento_de_sinal.extend([primeira_metade, segunda_metade])
+            
+    return elemento_de_sinal
+
+def MLT_3(dado_digital):
+    """Caso o bit for 0, se mantém no mesmo nível, caso o bit for 1,
+    segue para o próximo estado da sequencia cíclica [0V, +V, 0V, -V]
+    Args:
+        dado_digital (int[]): lista que representa o dado digital
+    Returns:
+        int[]: lista que representa o dado digital codificado
+    """
+    ciclo_estados = [0, 1, 0, -1]
+    indice_estado = 0 # Começa no primeiro 0 da sequência
+    
+    elemento_de_sinal = []
+    
+    for bit in dado_digital:
+        if bit == 1:
+            indice_estado = (indice_estado + 1) % 4
+            
+        elemento_de_sinal.append(ciclo_estados[indice_estado])
+        
+    return elemento_de_sinal
