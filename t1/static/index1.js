@@ -1,6 +1,6 @@
 const data = {
     dado_digital: [1, 0, 1, 1, 0],
-    metodos_de_codificacao: ["manchester"]
+    metodos_de_codificacao: ["NRZL", "manchester"]
 };
 
 async function codificacaoDeLinha(dadoDigital) {

@@ -35,7 +35,10 @@ def plot(dado_digital: list[int] = Body(), metodos_de_codificacao: list[str] = B
     codigos_de_linha = {}
     for metodo in metodos_de_codificacao:
         metodo = metodo.upper()
+        print(metodo)
         match metodo:
+            case "NRZL":
+                codigos_de_linha[metodo] = NRZL(dado_digital)
             case "MANCHESTER":
                 codigos_de_linha[metodo] = manchester(dado_digital)
             # TODO: implementar resto dos métodos
@@ -43,6 +46,6 @@ def plot(dado_digital: list[int] = Body(), metodos_de_codificacao: list[str] = B
                 raise HTTPException(status_code=404, detail=f'método {metodo} não recdonhecido')
 
     # plota e salva o gráfico (TODO: usar os métodos de codificação e não um gráfico fake)
-    plota_grafico(codigos_de_linha["MANCHESTER"], caminho)
+    plot_codificacoes(codigos_de_linha, caminho)
     
     return FileResponse(caminho)
