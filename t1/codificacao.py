@@ -129,9 +129,12 @@ def cod_2B1Q(dado_digital):
     Returns:
         int[]: lista que representa o dado digital codificado
     """
+    # criamos uma cópia para não alterar o número de bits adicionando 1 no final
+    dado_digital_cpy = dado_digital.copy() 
+
     #Caso tenha um número ímpar de bits preenchemos com 0 no final
-    if len(dado_digital) % 2 != 0:
-        dado_digital.append(0)
+    if len(dado_digital_cpy) % 2 != 0:
+        dado_digital_cpy.append(0)
 
     tabela_2b1q = {
         (0, 0): -3,
@@ -142,8 +145,8 @@ def cod_2B1Q(dado_digital):
     
     elemento_de_sinal = []
 
-    for i in range(0, len(dado_digital)/2):
-        par = (dado_digital[i], dado_digital[i+1])
+    for i in range(0, len(dado_digital_cpy), 2):
+        par = (dado_digital_cpy[i], dado_digital_cpy[i+1])
         nivel = tabela_2b1q[par]
         elemento_de_sinal.append(nivel)
     

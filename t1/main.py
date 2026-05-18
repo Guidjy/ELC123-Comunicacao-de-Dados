@@ -39,8 +39,24 @@ def plot(dado_digital: list[int] = Body(), metodos_de_codificacao: list[str] = B
         match metodo:
             case "NRZL":
                 codigos_de_linha[metodo] = NRZL(dado_digital)
+            case "NRZI":
+                codigos_de_linha[metodo] = NRZI(dado_digital)
+            case "AMI":
+                codigos_de_linha[metodo] = AMI(dado_digital)
+            case "PSEUDOTERNARIO":
+                codigos_de_linha[metodo] = pseudoternario(dado_digital)
             case "MANCHESTER":
                 codigos_de_linha[metodo] = manchester(dado_digital)
+            case "MANCHESTER DIFERENCIAL":
+                codigos_de_linha[metodo] = manchester_diferencial(dado_digital)
+            case "2B1Q":
+                codigos_de_linha[metodo] = cod_2B1Q(dado_digital)
+            case "DELAY MODULATION":
+                codigos_de_linha[metodo] = delay_modulation(dado_digital)
+            case "MLT-3":
+                codigos_de_linha[metodo] = MLT_3(dado_digital)
+
+            
             # TODO: implementar resto dos métodos
             case _:
                 raise HTTPException(status_code=404, detail=f'método {metodo} não recdonhecido')
