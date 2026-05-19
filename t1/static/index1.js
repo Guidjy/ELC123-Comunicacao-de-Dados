@@ -7,7 +7,7 @@ const TODOS_METODOS = [
     "MANCHESTER",
     "M. DIFERENCIAL",
     "2B1Q",
-    "DELAY MODULATION",
+    "CÓDIGO MILLER",
     "MLT-3"
 ];
 
