@@ -47,7 +47,7 @@ def plot(dado_digital: list[int] = Body(), metodos_de_codificacao: list[str] = B
                 codigos_de_linha[metodo] = pseudoternario(dado_digital)
             case "MANCHESTER":
                 codigos_de_linha[metodo] = manchester(dado_digital)
-            case "MANCHESTER DIFERENCIAL":
+            case "M. DIFERENCIAL":
                 codigos_de_linha[metodo] = manchester_diferencial(dado_digital)
             case "2B1Q":
                 codigos_de_linha[metodo] = cod_2B1Q(dado_digital)

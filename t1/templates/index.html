@@ -1,18 +1,69 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicação de Dados - Códigos de Linha</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+</head>
 
-    <head>
-        <title>Comunicação de Dados</title>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    </head>
-
-    <body class="bg-gray-800 text-white">
-        <h1 class="text-2xl">Comunicação de Dados</h1>
+<body class="bg-gray-800 text-gray-200 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto">
         
-        <div>
-            <img id="resultado-grafico" alt="Gráfico de codificação de linha">
+        <h1 class="text-3xl font-bold text-center mb-8 text-white">Visualizador de Códigos de Linha</h1>
+        
+        <!-- Painel de Configurações -->
+        <div class="card bg-gray-900 shadow-xl mb-8 border border-gray-700">
+            <div class="card-body">
+                <h2 class="card-title text-xl mb-4 text-white">Configurações do Sinal</h2>
+                
+                <!-- Entrada da Sequência de Bits -->
+                <div class="form-control w-full mb-6">
+                    <label class="label">
+                        <span class="label-text text-gray-300 font-semibold">Sequência de Bits (ex: 101100)</span>
+                    </label>
+                    <div class="flex gap-2">
+                        <input type="text" id="input-bits" placeholder="Digite apenas 0s e 1s" class="input input-bordered w-full bg-gray-800 text-white" value="101100" />
+                        <!-- Novo botão de sequência aleatória -->
+                        <button id="btn-aleatorio" class="btn btn-secondary whitespace-nowrap">Aleatória</button>
+                    </div>
+                </div>
+
+                <!-- Seleção dos Códigos de Linha -->
+                <div class="form-control w-full mb-6">
+                    <label class="label">
+                        <span class="label-text text-gray-300 font-semibold">Selecione os Códigos para Comparação</span>
+                    </label>
+                    
+                    <!-- Os checkboxes serão injetados aqui pelo JavaScript -->
+                    <div id="container-metodos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                    </div>
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="card-actions justify-end mt-4">
+                    <button id="btn-gerar" class="btn btn-primary">Gerar Gráfico</button>
+                </div>
+            </div>
         </div>
 
-        <script type="module" src="{{ url_for('static', path='/index1.js') }}"></script>
-    </body>
+        <!-- Área de Exibição do Gráfico -->
+        <div class="card bg-gray-900 shadow-xl border border-gray-700">
+            <div class="card-body items-center">
+                <h2 class="card-title text-white mb-4">Gráfico</h2>
+                
+                <div id="loading" class="hidden loading loading-spinner loading-lg text-primary mb-4"></div>
+                
+                <img id="resultado-grafico" alt="O gráfico será exibido aqui" class="max-w-full rounded-lg bg-white hidden shadow-md">
+            </div>
+        </div>
 
+    </div>
+
+    <!-- Script principal -->
+    <script type="module" src="{{ url_for('static', path='/index1.js') }}"></script>
+</body>
 </html>
